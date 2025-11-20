@@ -1,4 +1,6 @@
 package com.example.proxibanque_antoine_ganeau.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Agency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +25,8 @@ public class Agency {
 
     private String handlerName;
 
-    @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "agency", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Advisor> advisor;
 
     public Agency() {

@@ -1,5 +1,7 @@
 package com.example.proxibanque_antoine_ganeau.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Advisor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,8 @@ public class Advisor {
     @JoinColumn(name = "agency_id", nullable = false)
     private Agency agency;
 
-    @OneToMany(mappedBy = "conseiller", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "advisor", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<Client> clients = new ArrayList<>();
 
     public boolean canAssignNewClient() {

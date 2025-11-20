@@ -26,15 +26,15 @@ public class Client {
     private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "conseiller_id", nullable = false)
+    @JoinColumn(name = "advisor_id", nullable = false)
     private Advisor advisor;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "compte_courant_id")
+    @JoinColumn(name = "account_courant_id")
     private AccountCourant compteCourant;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "compte_epargne_id")
+    @JoinColumn(name = "account_epargne_id")
     private AccountEpargne compteEpargne;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)

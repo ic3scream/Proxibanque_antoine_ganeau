@@ -20,5 +20,11 @@ public class AccountCourant extends Account {
         super(numeroCompte, solde);
         this.authorizedNegative = 1000.0;
     }
-
+    @Override
+    public void withdraw(double amount) throws Exception {
+        if (this.getBalance() - amount < -this.getAuthorizedNegative()) {
+            throw new Exception("Not enough balance");
+        }
+        this.setBalance(this.getBalance() - amount);
+    }
 }

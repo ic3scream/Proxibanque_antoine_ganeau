@@ -24,4 +24,11 @@ public class AccountEpargne extends Account {
     public void setApy(double apy) {
         this.apy = apy;
     }
+    @Override
+    public void withdraw(double amount) throws Exception {
+        if (this.getBalance() - amount < 0) {
+            throw new Exception("Not enough balance");
+        }
+        this.setBalance(this.getBalance() - amount);
+    }
 }

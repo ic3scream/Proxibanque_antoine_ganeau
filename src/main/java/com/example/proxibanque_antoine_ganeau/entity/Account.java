@@ -32,4 +32,8 @@ public class Account {
         this.balance = balance;
         this.dateOpened = LocalDate.now();
     }
+
+    public void withdraw(double amount) throws Exception {
+
+    }
 }
